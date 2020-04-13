@@ -1,0 +1,208 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:t="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<body>
+	<ui:composition template="/views/Layout/_Layout.xhtml">
+
+		<ui:define name="content">
+		<f:metadata>
+				<f:viewParam name="id" value="#{productBean.current_product.id}"></f:viewParam>
+			</f:metadata>
+			<script>
+				$(document).ready(function() {
+					CKEDITOR.replace('editPro:mota');
+					CKEDITOR.basePath = '/ShopBadminton_Online/resources/ckeditor/';
+					CKFinder.setupCKEditor(null, '/ShopBadminton_Online/resources/ckfinder/');
+					/* CKFinder.config.showContextMenuArrow = true;
+					$('#btnSelectImage').on('click', function(e) {
+						e.preventDefault();
+						var finder = new CKFinder();
+						finder.BASE_PATH = '/ShopBadminton_Online/resources/ckfinder/';
+						//alert(finder.BASE_PATH);
+						//finder.resourceType = 'Images';
+						finder.filebrowserBrowseUrl = 'ckfinder.html',
+						finder.selectActionFunction = function(url) {
+							//$('#txtImg').val(url);
+							var txtImg = document.getElementById("j_idt36:txtImg");
+					       txtImg.value = url;
+							$('#img').attr("src", url);
+						};
+						finder.popup();
+					}) */
+				})
+			</script>
+			<div class="sub-heard-part">
+				<div class="col-md-4">
+					<button class="btn btn-success" style="margin: 0">Back</button>
+				</div>
+				<div class="col-md-4" style="float: right">
+					<ol class="breadcrumb m-b-0">
+						<li><a href="#">Home</a></li>
+						<li class="active">Product / Edit / #{productBean.current_product.id}</li>
+					</ol>
+				</div>
+			</div>
+			<div class="row">
+			<h:form enctype="multipart/form-data" id="editPro">
+				<div class="col-md-8 col-sm-12 col-xs-12">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">
+									<strong class="card-title">#{productBean.current_product.name}</strong>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3" style="text-align: right">Tên sản phẩm</label>
+									<div class="col-md-9">
+										<h:inputText styleClass="form-control"
+											style="margin-top:10px;" value="#{productBean.current_product.name}"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3" style="text-align: right">Nhà sản xuất</label>
+									<div class="col-md-9">
+										<h:selectOneMenu id="producer" value="#{productBean.idpro}" styleClass="form-control">  
+											<f:selectItem itemLabel="--Chọn nhà sản xuất--" itemValue="" noSelectionOption="true" />  
+											<f:selectItems value="#{producerBean.dropdownProducer}" />  
+										</h:selectOneMenu>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3" style="text-align: right">Danh mục</label>
+									<div class="col-md-9">
+										<h:selectOneMenu id="category" value="#{productBean.idcat}" styleClass="form-control">  
+											<f:selectItem itemLabel="--Chọn danh mục sản phẩm--" itemValue="" noSelectionOption="true" />  
+											<f:selectItems value="#{categoryBean.dropdownCategory}" />  
+										</h:selectOneMenu>
+									</div>
+								</div>
+								
+								
+								<!-- <div class="form-group">
+									<label class="control-label col-md-3" style="text-align: right">Số lượng</label>
+									<div class="col-md-9">
+										<input type="number" min="1" max="10000" class="form-control"
+											style="margin-top: 10px;" name="#{productBean.current_product.quantity}"/>
+										<p:spinner min="1" max="10000" value="#{productBean.current_product.quantity}"
+										styleClass="inputnumber"/>
+									</div>
+								</div> -->
+								<div class="form-group">
+									<label class="control-label col-md-3" style="text-align: right">TopHot</label>
+									<div class="col-md-9 radiocheck" style="margin-top: 10px">
+										<h:selectOneRadio id="hot" value="#{productBean.current_product.isHot}" >
+								            <f:selectItem itemLabel="Hot" itemValue="1" />
+								            <f:selectItem itemLabel="No Hot" itemValue="0" />
+								        </h:selectOneRadio>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3" style="text-align: right">Sản phẩm mới</label>
+									<div class="col-md-9 radiocheck" style="margin-top: 10px">
+										<h:selectOneRadio id="new" value="#{productBean.current_product.isNew}" >
+								            <f:selectItem itemLabel="New" itemValue="1"/>
+								            <f:selectItem itemLabel="Old" itemValue="0"/>
+								        </h:selectOneRadio>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="control-label col-md-3" style="text-align: right">Trạng thái</label>
+									<div class="col-md-9 radiocheck" style="margin-top: 10px">
+										<h:selectOneRadio id="active" value="#{productBean.current_product.active}">
+											<f:selectItem itemLabel="Chưa bán" itemValue="0" style="margin-right:10px"/>
+								            <f:selectItem itemLabel="Đang bán" itemValue="1" style="margin-right:10px"/>
+								            <f:selectItem itemLabel="Ngừng bán" itemValue="2" />
+								        </h:selectOneRadio>
+									</div>
+								</div>
+								<h:outputStylesheet>
+									.radiocheck > table > tbody > tr > td > input{
+										margin-right:10px;
+										margin-left:10px;
+									}
+								</h:outputStylesheet>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">
+									<strong class="card-title">Mô tả</strong>
+								</div>
+								<div style="margin: 15px auto; overflow: hidden;">
+									<div class="col-md-12">
+										<h:inputTextarea id="mota" value="#{productBean.current_product.description}"/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 col-xs-12">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">
+									<strong class="card-title">Hình ảnh</strong>
+								</div>
+								<div style="margin: 15px auto; overflow: hidden;">
+									<div class="col-md-12">
+										<!-- <input class="form-control" id="txtImg"
+											style="margin:5px 0;" name="j_idt36:txtImg" /> -->
+										
+										<!-- <input type="file" id = "btnSelectImage"/> -->
+										<!-- <button id="btnSelectImage">Chọn ảnh</button> -->
+										<t:inputFile id="btnSelectImage" value="#{productBean.file}" onchange="changeImg(this);"/>
+										<img src="/ShopBadminton_Online/resources/#{productBean.current_product.image}" id="img" width="240" height="240"
+											style="display: block;" />
+										<script>
+										function changeImg(input){
+											//alert("sdsdgs");
+											if (input.files[0]) { 
+											      var reader = new FileReader(); 
+
+											      reader.onload = function (e) { 
+												       $('#img').attr('src', e.target.result);
+												       //$('j_idt36:txtImg').val($('#img').attr('src'));
+												       var txtImg = document.getElementById("editPro:txtImg");
+												       txtImg.value = e.target.result;
+											      }; 
+											      reader.readAsDataURL(input.files[0]); 
+											     } 
+										}
+										</script>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-12">
+							<!-- Advanced Tables -->
+							<div class="card">
+								<div style="margin: 15px auto; overflow: hidden;">
+									<div class="col-md-12">
+										<h:commandButton action="#{productBean.update(productBean.current_product)}" styleClass="btn btn-success" style="background-color:green;border-color:green;border-radius:5%"
+										value="Update"/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</h:form>
+			</div>
+			
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

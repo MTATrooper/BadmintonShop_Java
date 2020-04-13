@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:t="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<body>
+	<ui:composition template="/views/Layout/_Layout.xhtml">
+
+		<ui:define name="content">
+			
+			<div class="sub-heard-part">
+				<div class="col-md-4">
+					<button class="btn btn-success" style="margin: 0">Back</button>
+				</div>
+				<div class="col-md-4" style="float: right">
+					<ol class="breadcrumb m-b-0">
+						<li><a href="#">Home</a></li>
+						<li class="active">ImportProduct / Create</li>
+					</ol>
+				</div>
+			</div>
+			<div class="row">
+			<h:form id="importform">
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">
+									<strong class="card-title">Nhập hàng</strong>
+								</div>
+								
+								<div class="form-group" style="margin-top:10px;">
+									<label class="control-label col-md-3" style="text-align: right">Chọn nhà sản xuất</label>
+									<div class="col-md-7">
+										<h:selectOneMenu id="producer" value="#{importBean.idproducer}" styleClass="form-control">
+										<f:ajax event="change" listener="#{importBean.getDropdownProduct}" execute="importform" render="importform:product" />  
+											<f:selectItems value="#{producerBean.dropdownProducer}" />  
+										</h:selectOneMenu>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3" style="text-align: right">Chọn danh mục sản phẩm</label>
+									<div class="col-md-7">
+										<h:selectOneMenu id="category" value="#{importBean.idcat}" styleClass="form-control">  
+											<f:ajax event="change" listener="#{importBean.getDropdownProduct}" execute="importform" render="importform:product" />
+											<f:selectItems value="#{categoryBean.dropdownCategory}" />  
+										</h:selectOneMenu>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="control-label col-md-3" style="text-align: right">Chọn sản phẩm</label>
+									<div class="col-md-7">
+										<h:selectOneMenu id="product" value="#{importBean.idpro}" styleClass="form-control">  
+											<f:selectItems value="#{importBean.dropdownProduct}" />  
+										</h:selectOneMenu>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="control-label col-md-3" style="text-align: right">Số lượng nhập</label>
+									<div class="col-md-9">
+										<p:spinner id="quantity" type="number" value="#{importBean.newimport.quantity}" valueChangeListener="#{importBean.updateQuantity}">
+											<p:ajax event="change" listener="#{importBean.total(importBean.newimport.quantity,importBean.newimport.price)}" update="importform:total" />
+										</p:spinner>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3" style="text-align: right">Giá nhập</label>
+									<div class="col-md-9 radiocheck" style="margin-top: 10px">
+										<p:spinner id="price" type="number" value="#{importBean.newimport.price}" valueChangeListener="#{importBean.updatePrice}">
+											<p:ajax event="change" listener="#{importBean.total(importBean.newimport.quantity,importBean.newimport.price)}" update="importform:total" />
+										</p:spinner>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3" style="text-align: right">Tổng chi phí</label>
+									<div class="col-md-9 radiocheck" style="margin-top: 10px">
+										<h:outputText id="total" value="#{importBean.total(importBean.newimport.quantity,importBean.newimport.price)}"/> VND
+									</div>
+								</div>
+								<div style="witdh: 100px;margin: 0 auto;">
+									<h:commandButton action="#{importBean.addImport(importBean.newimport)}" styleClass="btn btn-success" style="background-color:green;border-color:green;border-radius:5%"
+										value="Nhập hàng"/>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</h:form>
+			</div>
+			
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,106 @@
+﻿.caption {
+    margin: 0px auto;
+    width: 60%;
+    color: orangered;
+    text-align: center;
+    font-size: 30px;
+}
+
+#search-form .form-group {
+    width: 40%;
+    float: left;
+    height: 40px;
+}
+
+#search-box {
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 3px;
+    width: 90%;
+}
+
+    #search-box:focus {
+        border-width: 1.5px;
+        border-color: #66afe9;
+        box-shadow: none;
+    }
+
+.login_wrapper {
+    right: 0px;
+    margin: 0px auto;
+    margin-top: 5%;
+    max-width: 350px;
+    position: relative;
+}
+
+.animate {
+    -webkit-animation-duration: 0.5s;
+    -webkit-animation-timing-function: ease;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-duration: 0.5s;
+    -moz-animation-timing-function: ease;
+    -moz-animation-fill-mode: both;
+    -o-animation-duration: 0.5s;
+    -o-animation-timing-function: ease;
+    -o-animation-fill-mode: both;
+    -ms-animation-duration: 0.5s;
+    -ms-animation-timing-function: ease;
+    -ms-animation-fill-mode: both;
+    animation-duration: 0.5s;
+    animation-timing-function: ease;
+    animation-fill-mode: both;
+}
+.login_form {
+    z-index: 22;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+}
+.login_content {
+
+    margin: 0 auto;
+    padding: 25px 0 0;
+    position: relative;
+    text-align: center;
+    text-shadow: 0 1px 0 #fff;
+    min-width: 280px;
+}
+.separator {
+
+    border-top: 1px solid #D8D8D8;
+    margin-top: 10px;
+    padding-top: 10px;
+
+}
+.login_content div .reset_pass {
+
+    margin-top: 13px !important;
+    margin-right: 39px;
+    float: right;
+}
+.profile_pic {
+    width: 35%;
+    float: left;
+}
+.img-circle.profile_img {
+    width: 70%;
+    background: #fff;
+    margin-left: 15%;
+    z-index: 1000;
+    position: inherit;
+    margin-bottom: 10px;
+    border: 1px solid rgba(52,73,94,0.44);
+    padding: 4px;
+}
+.img-circle {
+    border-radius: 50%;
+}
+.profile_info {
+    padding-left: 10px;
+    width: 65%;
+    float: left;
+}
+.profile_info h4{
+    margin-top:0;
+    padding-top:0;
+}

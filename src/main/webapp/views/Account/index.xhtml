@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:t="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+
+	<ui:composition template="/views/Layout/_Layout.xhtml">
+
+
+		<ui:define name="content">
+			<div class="sub-heard-part">
+				<div class="col-md-4">
+					<a class="btn btn-success" style="margin: 0"
+						href="/ShopBadminton_Online/views/Account/create.xhtml">Create</a>
+				</div>
+				<div class="col-md-4" style="float: right">
+					<ol class="breadcrumb m-b-0">
+						<li><a href="#">Home</a></li>
+						<li class="active">Account</li>
+					</ol>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<strong class="card-title">Account</strong>
+						</div>
+						<div class="card-body">
+							<h:dataTable value="#{accountBean.accounts}" var="account"
+								id="bootstrap-data-table-export"
+								styleClass="table table-striped table-bordered">
+								<h:column id="ID" headerClass="headertext">
+									<f:facet name="header">ID</f:facet>
+									<h:outputText value="#{account.id}" />
+								</h:column>
+								<h:column id="IMG" headerClass="headertext">
+									<f:facet name="header">Username</f:facet>
+									<h:outputText value="#{account.username}" />
+								</h:column>
+								<h:column id="name" headerClass="headertext">
+									<f:facet name="header">Fullname</f:facet>
+									<h:outputText value="#{account.fullname}" />
+								</h:column>
+								<h:column id="producer" headerClass="headertext">
+									<f:facet name="header">PhoneNumber</f:facet>
+									<h:outputText value="#{account.phoneNumber}" />
+								</h:column>
+								<h:column id="category" headerClass="headertext">
+									<f:facet name="header">Email</f:facet>
+									<h:outputText value="#{account.email}" />
+								</h:column>
+								
+								<h:column id="active" headerClass="headertext">
+									<f:facet name="header">Status</f:facet>
+									<h:form id="formactive">
+
+									<c:if test="#{account.active == 1}">Kích hoạt</c:if>
+									<c:if test="#{account.active == 0}">Chưa kích hoạt</c:if>
+										<!-- <h:outputText value="#{account.active}" /> -->
+										
+									</h:form>
+								</h:column>
+								<h:column id="action" headerClass="headertext">
+									<f:facet name="header">#</f:facet>
+									<h:form id="myform">
+										
+										<h:commandButton action="#{productBean.detail(account.id)}"
+											includeViewParams="true" title="Detail"
+											styleClass="btn btn-default btn-sm"
+											image="/resources/icon/Actions-view-list-details-icon.png">
+											<f:param name="id" value="#{account.id}"></f:param>
+										</h:commandButton>
+										
+									</h:form>
+								</h:column>
+							</h:dataTable>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+
+</html>

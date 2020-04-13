@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:t="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+
+	<ui:composition template="/views/Layout/_Layout.xhtml">
+
+
+		<ui:define name="content">
+			<div class="sub-heard-part">
+				<div class="col-md-4">
+					<a class="btn btn-success" style="margin: 0"
+						href="/ShopBadminton_Online/views/ImportProduct/import.xhtml">Nhập hàng</a>
+				</div>
+				<div class="col-md-4" style="float: right">
+					<ol class="breadcrumb m-b-0">
+						<li><a href="#">Home</a></li>
+						<li class="active">Import</li>
+					</ol>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<strong class="card-title">Nhập hàng</strong>
+						</div>
+						<div class="form-group" style="margin-top:10px">
+							<label class="control-label col-md-2" style="text-align: right">Chọn ngày</label>
+							<h:form id="formimportdate">
+							<div class="col-md-2">
+								<input id="selectdate" type="date" onchange="change();"/>
+								<h:inputHidden value="#{importBean.dateString}" id="txtdate"/>
+								<script>
+										function change(){
+											var date = $('#selectdate').val().toString();
+											var txt = document.getElementById("formimportdate:txtdate");
+											txt.value = date;
+										}
+										
+									</script>
+							</div>
+							<div class="col-md-2" style="margin-top:-10px">
+								<h:commandButton class="btn btn-success" style="padding:5px 5px; background-color:blue;border-color:blue;border-radius:5%"
+									value="Xem chi tiết nhập" action="#{importBean.detail}"/>
+							</div>
+							</h:form>
+						</div>
+						<div class="card-body">
+							<h:dataTable value="#{importBean.getImportProducts()}" var="importproduct"
+								id="bootstrap-data-table-export"
+								styleClass="table table-striped table-bordered">
+								<h:column id="ID" headerClass="headertext">
+									<f:facet name="header">ID</f:facet>
+									<h:outputText value="#{importproduct.id}" />
+								</h:column>
+								<h:column id="date" headerClass="headertext">
+									<f:facet name="header">Ngày nhập</f:facet>
+									<h:outputText value="#{importproduct.importDate}" />
+								</h:column>
+								<h:column id="name" headerClass="headertext">
+									<f:facet name="header">Tên sản phẩm nhập</f:facet>
+									<h:outputText value="#{importproduct.product.name}" />
+								</h:column>
+								<h:column id="producer" headerClass="headertext">
+									<f:facet name="header">Số lượng nhập</f:facet>
+									<h:outputText value="#{importproduct.quantity}" />
+								</h:column>
+								<h:column id="category" headerClass="headertext">
+									<f:facet name="header">Giá nhập (VND)</f:facet>
+									<h:outputText value="#{importproduct.price}" />
+								</h:column>
+								
+								<h:column id="active" headerClass="headertext">
+									<f:facet name="header">Tổng tiền nhập (VND)</f:facet>
+									<h:form id="formactive">
+										<h:outputText value="#{importBean.tong(importproduct)}" />
+										
+									</h:form>
+								</h:column>
+								
+							</h:dataTable>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+
+</html>

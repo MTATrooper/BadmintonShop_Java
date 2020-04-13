@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:t="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<body>
+	<ui:composition template="/views/Layout/_Layout.xhtml">
+
+		<ui:define name="content">
+
+			<div class="sub-heard-part">
+				<div class="col-md-4">
+					<button class="btn btn-success" style="margin: 0">Back</button>
+				</div>
+				<div class="col-md-4" style="float: right">
+					<ol class="breadcrumb m-b-0">
+						<li><a href="#">Trang chủ</a></li>
+						<li class="active">Đổi mật khẩu</li>
+					</ol>
+				</div>
+			</div>
+			<div class="row">
+				<h:form id="formchange">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="card">
+									<div class="card-header">
+										<strong class="card-title">Đổi mật khẩu</strong>
+									</div>
+									
+										<div class="form-group">
+											<label class="control-label col-md-3"
+												style="text-align: right">Nhập mật khẩu cũ</label>
+											<div class="col-md-7" style="margin-top: 10px">
+												<h:inputSecret class="form-control" id="oldpass"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-3"
+												style="text-align: right">Nhập mật khẩu mới</label>
+											<div class="col-md-7" style="margin-top: 10px">
+												<h:inputSecret class="form-control" id="newpass" value="#{loginBean.newpass}"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-3"
+												style="text-align: right">Nhập lại mật khẩu mới</label>
+											<div class="col-md-7" style="margin-top: 10px">
+												<h:inputSecret class="form-control" id="repeatnewpass"/>
+											</div>
+										</div>
+										<div class="col-md-12">
+										<div style="witdh: 100px; margin: 0 auto;">
+											<h:commandButton
+												action="#{loginBean.changepass}" onclick="return check();"
+												styleClass="btn btn-success"
+												style="background-color:green;border-color:green;border-radius:5%"
+												value="Thay đổi" />
+										</div>
+										</div>
+									
+									<script>
+										function check()
+										{
+											var old = document.getElementById("formchange:oldpass");
+											if(old.value.toString() != #{password})
+											{
+												alert('Mật khẩu cũ không đúng!');
+												return false;
+											}
+											else
+											{
+												var newpass = document.getElementById("formchange:newpass");
+												var repeatnewpass = document.getElementById("formchange:repeatnewpass");
+												if(newpass.value.toString() != repeatnewpass.value.toString())
+												{
+													alert("Mật khẩu nhập lại không đúng");
+													return false;
+												}
+												else return true;
+											}
+										}
+									</script>
+								</div>
+							</div>
+						</div>
+					</div>
+				</h:form>
+			</div>
+
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

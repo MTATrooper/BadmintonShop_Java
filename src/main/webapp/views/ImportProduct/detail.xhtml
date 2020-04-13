@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:t="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+
+	<ui:composition template="/views/Layout/_Layout.xhtml">
+
+
+		<ui:define name="content">
+			<div class="sub-heard-part">
+				<div class="col-md-4">
+					<button class="btn btn-success" style="margin: 0"
+						onclick="printDiv('report')">In phiếu nhập</button>
+				</div>
+				<script>
+					function printDiv(divName) {
+						var printContents = document.getElementById(divName).innerHTML;
+						var originalContents = document.body.innerHTML;
+						document.body.innerHTML = printContents;
+						window.print();
+						document.body.innerHTML = originalContents;
+					}
+				</script>
+				<div class="col-md-4" style="float: right">
+					<ol class="breadcrumb m-b-0">
+						<li><a href="#">Home</a></li>
+						<li class="active">Import / Detail</li>
+					</ol>
+				</div>
+			</div>
+
+			<div class="row" id="report">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-body">
+							<div class="col-md-2" style="margin-top:20px;">
+								<p>MTA Badminton</p><br/>
+								<pre style="margin-top:-25px">  -- Kho HN --</pre>
+								<pre style="margin-top:-10px">   Số: 10</pre>
+							</div>
+							<div  class="col-md-12">
+								<div style="width:250px; margin:0 auto;">
+									<p style="font-size: 25px">PHIẾU NHẬP KHO</p>
+									<p style="margin-top:0px">Ngày #{importBean.dateString.split('-')[2]} tháng #{importBean.dateString.split('-')[1]} năm #{importBean.dateString.split('-')[0]}</p>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<pre>Họ tên chủ cửa hàng  : Phạm Đức Long</pre>
+							</div>
+							<div class="col-md-12">
+								<pre>Người nhận hàng        : Phạm Đức Long</pre>
+							</div>
+							<h:outputStylesheet>
+								pre {
+									border: none;
+									background-color:white;
+									font-family: 'Roboto', sans-serif;
+									font-size: 16px;
+								}
+							</h:outputStylesheet>
+							<h:dataTable value="#{importBean.getImportProductbyDate(importBean.dateString)}"
+								var="importproduct"
+								styleClass="table table-striped table-bordered">
+								<h:column id="ID" headerClass="headertext">
+									<f:facet name="header">ID</f:facet>
+									<h:outputText value="#{importproduct.id}" />
+								</h:column>
+								<h:column id="name" headerClass="headertext">
+									<f:facet name="header">Tên sản phẩm nhập</f:facet>
+									<h:outputText value="#{importproduct.product.name}" />
+								</h:column>
+								<h:column id="donvi" headerClass="headertext">
+									<f:facet name="header"> Đơn vị tính</f:facet>
+									chiếc
+								</h:column>
+								
+								<h:column id="count" headerClass="headertext">
+									<f:facet name="header">Số lượng nhập</f:facet>
+									<h:outputText value="#{importproduct.quantity}" />
+								</h:column>
+								<h:column id="category" headerClass="headertext">
+									<f:facet name="header">Giá nhập (VND)</f:facet>
+									<h:outputText value="#{importproduct.price}" />
+								</h:column>
+
+								<h:column id="active" headerClass="headertext">
+									<f:facet name="header">Trị giá (VND)</f:facet>
+										<h:outputText value="#{importBean.tong(importproduct)}" />
+
+								</h:column>
+							</h:dataTable>
+							<div class="col-md-12">
+								Tổng tiền nhập: #{importBean.totalImport(importBean.dateString)} VNĐ
+							</div>
+							<div class="col-md-12">
+								<div style="width: 300px; margin-left:400px;">
+									<pre><b> CHỦ CỬA HÀNG </b></pre>
+								</div>
+								<div style="width: 300px; margin-left:400px;margin-top:50px;">
+									<pre><b> Phạm Đức Long</b></pre>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+
+</html>

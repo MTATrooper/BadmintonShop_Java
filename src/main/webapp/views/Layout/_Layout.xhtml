@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<ui:insert name="header">
+		<ui:include src="/views/Layout/_Header.xhtml"></ui:include>
+	</ui:insert>
+	
+</h:head>
+<h:body onload="startTime()">
+	<div class="page-container">
+		<!--/content-inner-->
+		<div class="left-content">
+			<div class="inner-content" style="overflow: hidden;">
+				<!-- header-starts -->
+				<div class="header-section" style="height:65px;">
+					<!--menu-right-->
+					<div class="top_menu" style="width:100%">
+						<ui:insert name="top">
+							<ui:include src="/views/Layout/_TopMenu.xhtml"></ui:include>
+						</ui:insert>
+						<!--//profile_details-->
+					</div>
+					<!--//menu-right-->
+					<div class="clearfix"></div>
+				</div>
+				<!-- //header-ends -->
+				<!--outter-wp-->
+				<div class="outter-wp" style="background: #e0e8f5;">
+					<ui:insert name="content">
+					</ui:insert>
+				</div>
+
+				<ui:insert name="footer">
+					<ui:include src="/views/Layout/_Footer.xhtml"></ui:include>
+				</ui:insert>
+
+			</div>
+		</div>
+		<!--//content-inner-->
+		<!--/sidebar-menu-->
+		<div class="sidebar-menu">
+			<ui:insert name="left">
+				<ui:include src="/views/Layout/_LeftMenu.xhtml"></ui:include>
+			</ui:insert>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+
+	<!--js -->
+	<h:outputScript name="Augment_Template/js/jquery.nicescroll.js" />
+	<h:outputScript name="Augment_Template/js/scripts.js" />
+	<!-- Bootstrap Core JavaScript -->
+	<h:outputScript name="Augment_Template/js/bootstrap.min.js" />
+	<h:outputScript name="Augment_Template/datatables.net/js/jquery.dataTables.min.js"/>
+    <h:outputScript name="Augment_Template/datatables.net-bs4/js/dataTables.bootstrap4.min.js"/>
+    <h:outputScript name="Augment_Template/datatables.net-buttons/js/dataTables.buttons.min.js"/>
+    <h:outputScript name="Augment_Template/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"/>
+    <h:outputScript name="Augment_Template/datatables.net-buttons/js/buttons.html5.min.js"/>
+    <h:outputScript name="Augment_Template/datatables.net-buttons/js/buttons.print.min.js"/>
+    <h:outputScript name="Augment_Template/datatables.net-buttons/js/buttons.colVis.min.js"/>
+    <h:outputScript name="Augment_Template/js/data-table/datatables-init.js"/>
+</h:body>
+</html>

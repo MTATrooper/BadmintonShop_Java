@@ -1,0 +1,132 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<body>
+	<ui:composition>
+		<header class="logo">
+			<a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span>
+			</a> <a href="index.html"> <span id="logo">
+					<h1>QUẢN TRỊ</h1>
+			</span> <!--<img id="logo" src="" alt="Logo"/>-->
+			</a>
+		</header>
+		<div style="border-top: 1px solid rgba(69, 74, 84, 0.7)"></div>
+		<!--/down-->
+		<div class="down">
+			<a href="index.html"><h:graphicImage
+					name="Augment_Template/images/admin.jpg" /></a> <a href="index.html"><span
+				class=" name-caret">#{username}</span></a>
+			<ul>
+				<!-- <li><a class="tooltips" href="index.html"><span>Profile</span><i
+						class="lnr lnr-user"></i></a></li> -->
+				<li><a class="tooltips" href="/ShopBadminton_Online/views/Login/changepass.xhtml"><span
+						style="width: 80px">Đổi mật khẩu</span><i class="lnr lnr-cog"></i></a></li>
+				<li><a class="tooltips" href="/ShopBadminton_Online/views/Login/login.xhtml"><span>Đăng
+							xuất </span><i class="lnr lnr-power-switch"></i></a></li>
+			</ul>
+		</div>
+		
+		<!--//down-->
+		<div class="menu">
+			<ul id="menu">
+				<li><a href="/ShopBadminton_Online/views/Home/index.xhtml"><i
+						class="fa fa-tachometer"></i> <span>Thống kê</span></a></li>
+				<li id="menu-academico"><a href="#"><i class="fa fa-table"></i>
+						<span> Nhập hàng</span> <span class="fa fa-angle-right"
+						style="float: right"></span></a>
+					<ul id="menu-academico-sub">
+						<li id="menu-academico-avaliacoes"><a
+							href="/ShopBadminton_Online/views/ImportProduct/index.xhtml">
+								Danh sách nhập</a></li>
+						<li id="menu-academico-boletim"><a
+							href="/ShopBadminton_Online/views/ImportProduct/import.xhtml">Nhập
+								thêm hàng</a></li>
+
+					</ul></li>
+				<li id="menu-academico"><a href="#"><i class="fa fa-table"></i>
+						<span> Sản phẩm</span> <span class="fa fa-angle-right"
+						style="float: right"></span></a>
+					<ul id="menu-academico-sub">
+						<li id="menu-academico-avaliacoes"><a
+							href="/ShopBadminton_Online/views/Product/index.xhtml">Danh
+								sách sản phẩm</a></li>
+						<li id="menu-academico-boletim"><a
+							href="/ShopBadminton_Online/views/Product/create.xhtml">Thêm
+								sản phẩm mới</a></li>
+						<li id="menu-academico-boletim"><a
+							href="/ShopBadminton_Online/views/Product/liststop.xhtml">Sản
+								phẩm đã ngừng bán</a></li>
+						<li id="menu-academico-boletim"><a
+							href="/ShopBadminton_Online/views/Product/listout.xhtml">Sản
+								phẩm sắp hết hàng</a></li>
+					</ul></li>
+				<li id="menu-academico"><a href="#"><i
+						class="fa fa-file-text-o"></i> <span>Đơn hàng</span> <span
+						class="fa fa-angle-right" style="float: right"></span></a>
+					<ul id="menu-academico-sub">
+						<li id="menu-academico-boletim"><a
+							href="/ShopBadminton_Online/views/Bill/waitprogress.xhtml">Đang
+								chờ xử lý</a></li>
+						<li id="menu-academico-boletim"><a
+							href="/ShopBadminton_Online/views/Bill/progressed.xhtml">Đã
+								xử lý</a></li>
+						<li id="menu-academico-boletim"><a
+							href="/ShopBadminton_Online/views/Bill/received.xhtml">Đã
+								nhận</a></li>
+						<li id="menu-academico-boletim"><a
+							href="/ShopBadminton_Online/views/Bill/destroyed.xhtml">Đã
+								hủy</a></li>
+					</ul></li>
+				<li id="menu-academico"><a href="#"><i class="lnr lnr-book"></i><span>Tin
+							tức</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+					<ul id="menu-academico-sub">
+						<li id="menu-academico-avaliacoes"><a href="#">Danh sách</a></li>
+						<li id="menu-academico-boletim"><a href="#">Thêm mới</a></li>
+					</ul></li>
+
+				<li id="menu-academico"><a href="#"><i
+						class="lnr lnr-layers"></i> <span>Danh mục</span> <span
+						class="fa fa-angle-right" style="float: right"></span></a>
+					<ul id="menu-academico-sub">
+						<li id="menu-academico-avaliacoes"><a href="#">Nhà sản
+								xuất</a></li>
+						<li id="menu-academico-boletim"><a href="#">Loại sản phẩm</a></li>
+						<li id="menu-academico-boletim"><a href="#">Giá sản phẩm</a></li>
+					</ul></li>
+				<li><a href="#"><i class="lnr lnr-chart-bars"></i><span>Tài
+							khoản</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+					<ul>
+						<li><a href="/ShopBadminton_Online/views/Account/index.xhtml"><i
+								class="lnr lnr-map"></i> Danh sách</a></li>
+						<li><a href="#"><i class="lnr lnr-apartment"></i>Thêm mới</a></li>
+					</ul></li>
+			</ul>
+		</div>
+		
+		<script>
+			var toggle = true;
+			$(".sidebar-icon").click(
+					function() {
+						if (toggle) {
+							$(".page-container").addClass("sidebar-collapsed")
+									.removeClass("sidebar-collapsed-back");
+							$("#menu span").css({
+								"position" : "absolute"
+							});
+						} else {
+							$(".page-container").removeClass(
+									"sidebar-collapsed").addClass(
+									"sidebar-collapsed-back");
+							setTimeout(function() {
+								$("#menu span").css({
+									"position" : "relative"
+								});
+							}, 400);
+						}
+						toggle = !toggle;
+					});
+		</script>
+	</ui:composition>
+</body>
+</html>

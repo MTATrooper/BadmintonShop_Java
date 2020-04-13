@@ -1,0 +1,236 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:t="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:body>
+
+	<ui:composition template="/views/Layout/_Layout.xhtml">
+
+
+		<ui:define name="content">
+			<h:outputScript name="Augment_Template/js/Chart.min.js" />
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-body">
+							<div class="custom-widgets">
+								<div class="row-one">
+									<div class="col-md-3 widget">
+										<div class="stats-left ">
+											<h4>Hóa đơn</h4>
+											<h5>Đang chờ xử lý</h5>
+										</div>
+										<div class="stats-right">
+											<label>#{billBean.getListWaitProgressBill().size()}</label>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+									<div class="col-md-3 widget states-mdl">
+										<div class="stats-left">
+											<h4>Sản phẩm</h4>
+											<h5>Số lượng</h5>
+										</div>
+										<div class="stats-right">
+											<label>#{productBean.getProducts().size()}</label>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+									<div class="col-md-3 widget states-thrd">
+										<div class="stats-left">
+											<h4>Tài khoản</h4>
+											<h5>Số lượng</h5>
+										</div>
+										<div class="stats-right">
+											<label>#{accountBean.getAccounts().size()}</label>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+									<div class="col-md-3 widget states-last">
+										<div class="stats-left">
+											<h4>Tin tức</h4>
+											<h5>Số lượng</h5>
+										</div>
+										<div class="stats-right">
+											<label>0</label>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+
+							<hr />
+							<div class="col-md-12">
+								<b>Thống kê doanh thu các tháng</b>
+							</div>
+							<br />
+
+							<div>
+								<table class="table table-striped table-bordered"
+									id="bootstrap-data-table-export">
+									<tr>
+										<td><b>Tháng 1</b>
+											<hr />Doanh thu : #{homeBean.getRevenueMonth(1)} đ<br />Lãi
+											: #{homeBean.getBenefitMonth(1)} đ</td>
+										<td><b>Tháng 2</b>
+											<hr />Doanh thu : #{homeBean.getRevenueMonth(2)} đ<br />Lãi
+											: #{homeBean.getBenefitMonth(2)} đ</td>
+										<td><b>Tháng 3</b>
+											<hr />Doanh thu : #{homeBean.getRevenueMonth(3)} đ<br />Lãi
+											: #{homeBean.getBenefitMonth(3)} đ</td>
+										<td><b>Tháng 4</b>
+											<hr />Doanh thu : #{homeBean.getRevenueMonth(4)} đ<br />Lãi
+											: #{homeBean.getBenefitMonth(4)} đ</td>
+										<td><b>Tháng 5</b>
+											<hr />Doanh thu : #{homeBean.getRevenueMonth(5)} đ<br />Lãi
+											: #{homeBean.getBenefitMonth(5)} đ</td>
+										<td><b>Tháng 6</b>
+											<hr />Doanh thu : #{homeBean.getRevenueMonth(6)} đ<br />Lãi
+											: #{homeBean.getBenefitMonth(6)} đ</td>
+									</tr>
+									<tr>
+										<td><b>Tháng 7</b>
+											<hr />Doanh thu : #{homeBean.getRevenueMonth(7)} đ<br />Lãi
+											: #{homeBean.getBenefitMonth(7)} đ</td>
+										<td><b>Tháng 8</b>
+											<hr />Doanh thu : #{homeBean.getRevenueMonth(8)} đ<br />Lãi
+											: #{homeBean.getBenefitMonth(8)} đ</td>
+										<td><b>Tháng 9</b>
+											<hr />Doanh thu : #{homeBean.getRevenueMonth(9)} đ<br />Lãi
+											: #{homeBean.getBenefitMonth(9)} đ</td>
+										<td><b>Tháng 10</b>
+											<hr />Doanh thu : #{homeBean.getRevenueMonth(10)} đ<br />Lãi
+											: #{homeBean.getBenefitMonth(10)} đ</td>
+										<td><b>Tháng 11</b>
+											<hr />Doanh thu : #{homeBean.getRevenueMonth(11)} đ<br />Lãi
+											: #{homeBean.getBenefitMonth(11)} đ</td>
+										<td><b>Tháng 12</b>
+											<hr />Doanh thu : #{homeBean.getRevenueMonth(12)} đ<br />Lãi
+											: #{homeBean.getBenefitMonth(12)} đ</td>
+									</tr>
+								</table>
+
+								<canvas id="income" width="1000px" height="500" />
+								<div style="width: 350px; margin: 10px auto;">
+									<b>Biểu đồ tăng trưởng doanh thu các tháng</b>
+								</div>
+								<script>
+									var barData = {
+										labels : [ "Tháng 1", "Tháng 2",
+												"Tháng 3", "Tháng 4",
+												"Tháng 5", "Tháng 6",
+												"Tháng 7", "Tháng 8",
+												"Tháng 9", "Tháng 10",
+												"Tháng 11", "Tháng 12" ],
+										datasets : [
+												{
+													fillColor : "#48A497",
+													strokeColor : "#48A4D1",
+													data : [ #{homeBean.getRevenueMonth(1)}, #{homeBean.getRevenueMonth(2)}, #{homeBean.getRevenueMonth(3)},
+														#{homeBean.getRevenueMonth(4)}, #{homeBean.getRevenueMonth(5)}, #{homeBean.getRevenueMonth(6)}, 
+														#{homeBean.getRevenueMonth(7)}, #{homeBean.getRevenueMonth(8)}, #{homeBean.getRevenueMonth(9)},
+														#{homeBean.getRevenueMonth(10)}, #{homeBean.getRevenueMonth(11)}, #{homeBean.getRevenueMonth(12)} ]
+												},
+												{
+													fillColor : "rgba(73,188,170,0.4)",
+													strokeColor : "rgba(72,174,209,0.4)",
+													data : [ #{homeBean.getBenefitMonth(1)}, #{homeBean.getBenefitMonth(2)}, #{homeBean.getBenefitMonth(3)},
+														#{homeBean.getBenefitMonth(4)}, #{homeBean.getBenefitMonth(5)}, #{homeBean.getBenefitMonth(6)},
+														#{homeBean.getBenefitMonth(7)}, #{homeBean.getBenefitMonth(8)}, #{homeBean.getBenefitMonth(9)}, 
+														#{homeBean.getBenefitMonth(10)}, #{homeBean.getBenefitMonth(11)}, #{homeBean.getBenefitMonth(12)} ]
+												} ]
+									}
+
+									// get bar chart canvas
+									var income = document.getElementById(
+											"income").getContext("2d");
+
+									// draw bar chart
+									new Chart(income).Bar(barData);
+								</script>
+								<hr />
+								<div class="col-md-12">
+									<b>Thống kê sản phẩm bán chạy</b>
+								</div>
+								<br />
+								<div class="form-group" style="margin-top: 10px">
+									<h:form id="formproduct">
+										<label class="control-label col-md-2"
+											style="text-align: right">Từ ngày</label>
+										<div class="col-md-2">
+											<input type="date" class="form-control" id="inputbegin"
+												onchange="changeBegin()" />
+											<h:inputHidden value="#{homeBean.begin}" id="begin" />
+										</div>
+										<label class="control-label col-md-2"
+											style="text-align: right">Đến ngày</label>
+										<div class="col-md-2">
+											<input type="date" class="form-control" id="inputend"
+												onchange="changeEnd()" />
+											<h:inputHidden value="#{homeBean.end}" id="end" />
+										</div>
+										<h:commandButton  styleClass="btn btn-success"
+											style="margin-top:0;background-color:green;border-color:green;border-radius:5%"
+											value="Thống kê">
+											<f:ajax execute="formproduct" render="formproduct:bootstrap-data-table-export"/>
+										</h:commandButton>
+										<script>
+											function changeBegin()
+											{
+												var txtbegin = document.getElementById('formproduct:begin');
+												txtbegin.value = $("#inputbegin").val();
+											}
+											function changeEnd()
+											{
+												var txtend = document.getElementById('formproduct:end');
+												txtend.value = $("#inputend").val();
+											}
+										</script>
+										<h:dataTable value="#{homeBean.sanphambanchay()}"
+										var="product" id="bootstrap-data-table-export"
+										styleClass="table table-striped table-bordered">
+										<h:column id="ID" headerClass="headertext">
+											<f:facet name="header">ID</f:facet>
+											<h:outputText value="#{product.id}" />
+										</h:column>
+										<h:column id="name" headerClass="headertext">
+											<f:facet name="header">Tên sản phẩm</f:facet>
+											<h:outputText value="#{product.name}" />
+										</h:column>
+										<h:column id="soluong" headerClass="headertext">
+											<f:facet name="header">Số lượng bán ra</f:facet>
+											<h:outputText value="#{homeBean.sobanra(product)}" />
+										</h:column>
+										<h:column id="doanhthu" headerClass="headertext">
+											<f:facet name="header">Doanh thu sản phẩm</f:facet>
+											<h:outputText value="#{homeBean.doanhthu(product)}" />
+										</h:column>
+										<h:column id="bill" headerClass="headertext">
+											<f:facet name="header">Đơn hàng xuất hiện</f:facet>
+											<h:outputText value="#{homeBean.sohoadon(product)}" />
+										</h:column>
+										
+									</h:dataTable>
+									</h:form>
+									
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+
+</html>
